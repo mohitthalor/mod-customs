@@ -1,0 +1,182 @@
+<% layout("/layouts/boilerplate") %>
+
+    <div class="container2" style="margin-top: 80px; height: 1700px;">
+
+        <h1 class="dashboard-heading" style="margin-bottom: 50px;">Checkouts</h1>
+
+        <div class="buy-container">
+            <h3 class="dashboard-heading" style="margin-bottom: 0; height: 80px;">Purchase Details</h3>
+
+
+
+            <div class="buy-form-container">
+
+                <form id="form" action="https://api.web3forms.com/submit" method="POST">
+
+
+                    <input type="hidden" name="access_key" value="288476a8-a9ed-4060-a447-097267979dec">
+
+                    <input type="hidden" name="redirect" value="https://mod-customs.onrender.com/checkoutSuccess">
+
+                    <input type="hidden" name="from_name" value="Order from Mod Customs">
+
+                    <h5>Personal Details</h5>
+
+                    <hr>
+
+                    <div class="mb-4">
+                        <label for="exampleFormControlInput1" class="form-label">Full Name</label>
+                        <input name="name" type="text" class="form-control" id="exampleFormControlInput1"
+                            placeholder="enter your full name " required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="exampleFormControlInput1" class="form-label">Mobile Number</label>
+                        <input name=" mobile" type="number" class="form-control" id="exampleFormControlInput1"
+                            placeholder="+91XXXXXXXXXX" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="exampleFormControlInput1" class="form-label">Email</label>
+                        <input name="Email" type="email" class="form-control" id="exampleFormControlInput1"
+                            placeholder="username@gmail.com" required>
+                    </div>
+
+                    <br>
+
+                    <h5>Address</h5>
+
+                    <hr>
+
+                    <div class="mb-4">
+                        <label for="exampleFormControlInput1" class="form-label">Address line1*</label>
+                        <input name="Address" type="text" class="form-control" id="exampleFormControlInput1"
+                            required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="exampleFormControlInput1" class="form-label">Address line2*</label>
+                        <input name="Address" type="text" class="form-control" id="exampleFormControlInput1"
+                            required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="exampleFormControlInput1" class="form-label">City, state</label>
+                        <input name="city" type="text" class="form-control" id="exampleFormControlInput1"
+                          placeholder="city and state"  required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="exampleFormControlInput1" class="form-label">Pincode</label>
+                        <input name="Pincode" type="number" class="form-control" id="exampleFormControlInput1"
+                          placeholder="6 digits*"  required>
+                    </div>
+
+                    <br>
+
+                    <h5>Payment Method</h5>
+
+                    <hr>
+
+                    <div class="mb-4">
+                        <label for="exampleFormControlInput1" class="form-label">payment</label>
+                        <select name="payment" class="form-select" aria-label="Default select example" required>
+                            <option selected>Cash On Delivery</option>
+                            
+                        </select>
+                    </div>
+
+                    <p>Other Options For Payment Will be Added Later*</p>
+
+                    <br>
+                    <hr>
+
+                    <br>
+
+                    <h5>Delivery time:</h5>
+                    <p>Your Order Will Be Deliverd Within 5 days.</p>
+
+                    
+                    <hr>
+
+
+                    <br>
+
+                    <button type="submit" class="btn btn-primary">Place Your Order</button>
+
+
+
+                    <div id="result"></div>
+
+                </form>
+            </div>
+        </div>
+
+
+        <div class="buy-cart-container">
+
+            <h3 class="dashboard-heading" style="margin-bottom: 0; height: 80px;">Your Items</h3>
+
+            <% cart.items.forEach(item=> { %>
+
+                <div class="buy-cart-items-box">
+
+
+                    <div class="buy-cart-item-img-box">
+                        <img style="box-shadow: 0px 0px 10px rgb(178, 178, 178);" class="cart-item-img"
+                            src="<%= item.product.image.url %>" alt="<%= item.product.title %>">
+                    </div>
+
+
+                    <div class="buy-cart-items-details">
+                        <div class="buy-cart-item-title">
+                            <p>
+                                <%= item.product.title %>
+                            </p>
+                        </div>
+
+                        <div class="buy-cart-item-price">
+                            <p>
+                                <%= item.price.toFixed(2) %>
+                            </p>
+                        </div>
+
+                        <div class="buy-cart-item-del-btn">
+                            <form action="/<%= item.product._id %>/deleteFromCart" method="POST">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+
+
+                    <hr>
+
+
+                </div>
+
+
+                <% }) %>
+
+
+                    <h3 class="buy-cart-total-price">
+                        Total Price: <%= cart.totalPrice.toFixed(2) %>
+                    </h3>
+
+
+
+        </div>
+
+    </div>
+
+    <script>
+        window.onload = function() {
+            // Reset the form fields when the page loads
+            document.getElementById("form").reset();
+        };
+    </script>

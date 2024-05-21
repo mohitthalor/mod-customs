@@ -1,0 +1,27 @@
+<% layout("/layouts/boilerplate") %>
+
+    <div class="container2" style="margin-top: 80px;">
+
+        <h1 class="dashboard-heading">Our Previous Best Works</h1>
+
+        <div
+            style="width: 95%; height: auto;margin-top: 150px; background-color: white; margin-left: 2.5%;border-radius: 20px; box-shadow: 0px 0px 15px rgb(201, 201, 201); padding: 50px;">
+            <% for(excellence of allExcellence) { %>
+                <div class="excellence-card">
+                    <div class="excellence-card-image-box">
+                        <img src="<%= excellence.image.url %>" alt="image" class="excellence-card-image">
+                    </div>
+                    <div class="excellence-card-content">
+                        <h5 class="excellence-card-name" style="margin-top: 5px; margin-left: 10px;">
+                            Garage:
+                            <%= excellence.garageName %>
+                        </h5>
+                        <p class="excellence-card-loaction" style="margin-top: 10px; margin-left: 10px;">Address: <%=
+                                excellence.location %>
+                        </p>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+
+    </div>

@@ -1,0 +1,183 @@
+<% layout("/layouts/boilerplate") %>
+
+    <div class="container2" style="margin-top: 80px; padding: 100px; float: left;">
+        <div class="product-img-box">
+            <img src="<%= listing.image.url %>" alt="product image" class="listing-img">
+        </div>
+
+        <div class="product-details-box">
+            <h2 class="product-title">
+                <%= listing.title %>
+            </h2>
+            <h5 class="product-for">For : <%= listing.company %>&nbsp;<%= listing.model %>
+            </h5>
+            <hr>
+            <h2 class="product-price">
+                <%= listing.price.toLocaleString("en-IN", { style: "currency" , currency: "INR" , minimumFractionDigits:
+                    0 }) %>
+            </h2>
+            <p class="product-tax" style="margin-bottom: 30px;">Inclusive of all taxes</p>
+            <hr>
+            <div class="product-service-card">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+                <p>Pay on Delivery</p>
+            </div>
+            <div class="product-service-card">
+                <i class="fa-solid fa-rotate-left"></i>
+                <p>10 Days Return</p>
+            </div>
+            <div class="product-service-card">
+                <i class="fa-solid fa-truck"></i>
+                <p>Free Delivery</p>
+            </div>
+            <div class="product-service-card">
+                <i class="fa-solid fa-trophy"></i>
+                <p>Top Brand </p>
+            </div>
+
+            <br><br><br>
+
+
+
+
+        </div>
+
+        <div class="product-details-box2">
+            <hr>
+
+            <h4 style="margin-bottom: 40px; margin-top: 40px;">About this Product</h4>
+            <p style="text-align: justify; margin-bottom: 40px;">
+                <%= listing.description %>
+            </p>
+
+
+            <hr>
+
+            <div style="float: left;margin-top: 30px;">
+                <h5>
+                    <color style="color: rgb(94, 94, 94);">Free Delivery</color> within 5 Days
+                </h5>
+                <br>
+                <h6>
+                    <color style="color: rgb(86, 86, 86);">Ship from</color>
+                    <color style="color: rgb(54, 41, 142);">Mod Customs</color>
+                </h6>
+            </div>
+
+            <div class="product-purchase-box">
+
+                <a class="text-deco" href="/cart">
+                    <div class="product-cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                </a>
+
+                <form action="/<%= listing._id %>/addToCart" method="POST">
+                    <button class="addToCart-btn">Add To Cart</button>
+
+                </form>
+
+            </div>
+
+
+            <br><br><br><br><br><br>
+
+            <hr>
+
+            <h5 style="margin-top: 30px; margin-bottom: 30px;">Get instant recommendations</h5>
+
+            <div class="product-suggestion-container">
+                <% for(listing of similarListings){ %>
+                    <a class="text-deco" href="/<%= listing._id %>/showListing">
+                        <div class="product-suggestion-box">
+                            <div class="product-suggestion-img-box">
+                                <img class="product-suggestion-img" src="<%= listing.image.url%>" alt="img">
+                            </div>
+                            <div class="product-suggestion-description">
+                                <h6>
+                                    <%= listing.price.toLocaleString("en-IN", { style: "currency" , currency: "INR" ,
+                                        minimumFractionDigits: 0 }) %>
+                                </h6>
+                            </div>
+                        </div>
+                    </a>
+                    <% } %>
+
+            </div>
+
+        </div>
+
+
+
+        <!--review box-->
+
+        <% if(currUser){ %>
+
+            <div class="review-box">
+
+                <br>
+                <h4>Leave a review</h4>
+                <br>
+                <form action="/<%= listing.id %>/reviews" method="post">
+                    <div>
+                        <label for="rating" class="review-titles">Rating</label>
+                        <input type="range" min="1" max="5" id="rating" name="review[rating]"
+                            class="form-range review-range">
+                    </div>
+
+                    <div>
+                        <label for="comment" class="review-titles">Comment</label>
+                        <br><br>
+                        <textarea name="review[comment]" id="comment" cols="30" rows="4" class="form-control"
+                            required></textarea>
+                    </div>
+                    <br>
+                    <button class="edit-btn" style="border: 0; font-size: 20px; margin-left: 0;">Submit</button>
+                </form>
+
+                <% } %>
+
+                    <br><br>
+
+                    <hr>
+
+                    <div class="all-reviews ">
+                        <br>
+
+                        <h4>Reviews</h4>
+
+                        <br>
+                        <ul>
+                            <% for(review of listing.reviews) {%>
+                                <div class="each-review">
+                                    <p>
+                                        <%= review.author.username %>
+                                    </p>
+                                    <p class="rating-stars">
+                                        <%= review.rating %>
+                                    </p>
+                                    <p style="font-size: 16px; text-align: justify;">
+                                        <%= review.comment %>
+                                    </p>
+
+
+                                    <form action="/<%= listing.id %>/reviews/<%= review._id %>?_method=DELETE"
+                                        method="post">
+                                        <button
+                                            style="width: 100px; height: 30px; background-color: #1c1b1bd8; border: 0; border-radius: 5px; color: white;">Delete</button>
+
+                                    </form>
+
+
+                                </div>
+                                <% } %>
+                        </ul>
+                    </div>
+            </div>
+
+
+    </div>
+
+
+
+
+
+    <script src="/js/rating.js"></script>

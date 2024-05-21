@@ -1,0 +1,40 @@
+<% layout("/layouts/boilerplate") %>
+
+
+
+<div class="home-container2" style="margin-top: 80px;">
+
+
+    <div class="dashboard-heading" style="margin: 70px 0 50px 0;"><h1><%= listing.company %>&nbsp;<%= listing.model %>&nbsp;<%= listing.type %></h1></div>
+
+
+
+    <% for(let listing of similarListings){ %>
+
+
+        <a href="/<%= listing._id %>/showListing">
+            <div class="listing-container">
+                <div class="listing-img-container">
+                    <img src="<%= listing.image.url%>" alt="listing image" class="listing-img">
+                </div>
+                <div class="listing-details" style="padding-top: 20px; font-size: 18px; color: black;">
+                    <p>
+                        <%= listing.company %>&nbsp;<%= listing.model %>
+                    </p>
+                    <p>
+                        <%= listing.title %>
+                    </p>
+                    <p>
+                        Price:&nbsp;&nbsp;<%= listing.price.toLocaleString("en-IN", { style: "currency" ,
+                            currency: "INR" , minimumFractionDigits: 0 }) %>
+                    </p>
+
+
+                </div>
+
+
+            </div>
+        </a>
+
+        <% } %>
+</div>

@@ -1,0 +1,73 @@
+<% layout("/layouts/boilerplate") %>
+
+
+    <div style="margin-top: 80px; padding: 100px;" class="container2">
+        <h1 class="dashboard-heading">Your Cart</h1>
+        <% if (cart) { %>
+
+            <div class="cart-container">
+
+                <ul class="cart-item-header">
+                    <li class="cart-header" style="margin-left: 310px;">Title</li>
+                    <li class="cart-header" style="margin-left: 500px;">Price</li>
+                    <li class="cart-header" style="margin-left: 160px;">Delete</li>
+                </ul>
+                <br>
+
+                <hr>
+
+                <br>
+
+                <% cart.items.forEach(item=> { %>
+
+                    <div class="cart-items-box">
+
+
+                       
+                            <div class="cart-item-img-box">
+                                <img class="cart-item-img" src="<%= item.product.image.url %>"
+                                    alt="<%= item.product.title %>">
+                            </div>
+                       
+
+                        <div class="cart-item-title">
+                            <p>
+                                <%= item.product.title %>
+                            </p>
+                        </div>
+
+                        <div class="cart-item-price">
+                            <p>
+                                <%= item.price.toFixed(2) %>
+                            </p>
+                        </div>
+
+                        <div class="cart-item-del-btn">
+                            <form action="/<%= item.product._id %>/deleteFromCart" method="POST">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+
+
+                    </div>
+
+
+                    <% }) %>
+
+
+                        <h3 class="cart-total-price">
+                            Total Price: <%= cart.totalPrice.toFixed(2) %>
+                        </h3>
+
+                        <a href="/buy">
+                            <button class="btn btn-success"
+                                style="margin-top: 50px; margin-left: 100px;">Checkout</button>
+                        </a>
+
+            </div>
+
+            .
+            <% } else { %>
+                <p>Your cart is empty.</p>
+                <% } %>
+    </div>

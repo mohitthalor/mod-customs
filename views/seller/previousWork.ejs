@@ -1,0 +1,31 @@
+<% layout("/layouts/boilerplate") %>
+
+
+    <div class="container2" style="margin-top: 80px;">
+
+        <br>
+        <br>
+        
+        <h1 class="dashboard-heading">Share your previous work images</h1>
+
+       <div class="previousWorkForm-box">
+        <form action="/previousWorkUpload" method="POST" enctype="multipart/form-data">
+            <div class="mb-4">
+                <label for="exampleFormControlInput1" class="form-label">Garage Name</label>
+                <input name="excellence[garageName]" type="text" class="form-control" id="exampleFormControlInput1"
+                    placeholder="Enter your garage name" required>
+            </div>
+            <div class="mb-4">
+                <label for="exampleFormControlInput1" class="form-label">location</label>
+                <input name="excellence[location]" type="text" class="form-control" id="exampleFormControlInput1"
+                    placeholder="location of your garage" required>
+            </div>
+            <div class=" mb-4">
+                <label for="image" class="form-label">Upload image of modification</label>
+                <input type="file" name="excellence[image]" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+       </div>
+
+    </div>

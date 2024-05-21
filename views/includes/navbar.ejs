@@ -1,0 +1,59 @@
+<nav class="navbar">
+    <a href="/">
+        <div class="logo-box">
+            <div class="logo-img"></div>
+            <div class="company-name-box">
+                <p style="color: rgb(0, 0, 0);">Mod Customs</p>
+            </div>
+        </div>
+    </a>
+    <div class="menu-list-box">
+        <ul class="menu-list">
+            <a href="/" style="text-decoration: none;color: black;">
+                <li class="menu">
+                    Home
+                </li>
+            </a>
+            <a href="/excellence" style="text-decoration: none;color: black;">
+                <li class="menu">
+                    Excellence
+
+                </li>
+            </a>
+            
+            <a href="/about" style="text-decoration: none;color: black;">
+                <li class="menu">
+                    About
+
+                </li>
+            </a>
+            <a href="/seller" style="text-decoration: none;color: black;">
+                <li class="menu">
+                    Seller
+
+                </li>
+            </a>
+        </ul>
+    </div>
+    <% if(!currUser) {%>
+        <a href="/account">
+            <div class="getting-started-box" style="padding-left: 27px;">
+                <p style="color: rgb(255, 255, 255); float: left;">Get Started&nbsp;&nbsp;&nbsp; </p>
+
+            </div>
+        </a>
+        <% } %>
+            <% if(currUser){ %>
+                <a class="text-deco" href="/cart">
+                    <div style="position: relative; left: 50px;" class="product-cart-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                </a>
+                <a href="/logout">
+                    <div class="getting-started-box">
+                        <p style="color: rgb(255, 255, 255); float: left; text-align: center;padding-left: 20px;">
+                            Logout&nbsp;&nbsp;&nbsp; </p>
+                        <i style="color: rgb(255, 255, 255); float: left; font-size: 20px; margin-top: 5px;"
+                            class="fa-solid fa-arrow-up-from-bracket fa-rotate-90"></i>
+                    </div>
+                </a>
+                <%}%>
+</nav>

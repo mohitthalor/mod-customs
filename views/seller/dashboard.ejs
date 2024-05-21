@@ -1,0 +1,84 @@
+<% layout("/layouts/boilerplate") %>
+
+    <div class="dashboard-main-container">
+        <div class="dashboard-heading">
+            <h1>Seller Dashboard</h1>
+        </div>
+
+        <div class="dashboard-container1">
+            <h3>Want To Create New Listings?</h3>
+            <a style="text-decoration: none;" href="/createPage">
+                <div class="create-btn">Create</div>
+            </a>
+        </div>
+
+        <div class="dashboard-container1" style="float: right;">
+            <h3>Want To Share Previous Works?</h3>
+            <a style="text-decoration: none;" href="/previousWork">
+                <div class="create-btn">Share</div>
+            </a>
+        </div>
+
+        <br>    
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    
+        <hr>
+
+        <div class="dashboard-heading2">
+            <h2>Previous Listings</h2>
+        </div>
+
+        <div class="dashboard-container2">
+            <% for(let listing of allListings){ %>
+                <% if(currUser && listing.owner && currUser._id.equals(listing.owner._id)){ %>
+
+                    <div class="listing-container">
+                        <div class="listing-img-container">
+                            <img src="<%= listing.image.url%>" alt="listing image" class="listing-img">
+                        </div>
+                        <div class="listing-details">
+                            <p>
+                                <%= listing.company %>&nbsp;<%= listing.model %>
+                            </p>
+                            <p>
+                                <%= listing.title %>
+                            </p>
+                            <p>
+                                Price:&nbsp;&nbsp;<%= listing.price.toLocaleString("en-IN", { style: "currency" ,
+                                    currency: "INR" , minimumFractionDigits: 0 }) %>
+                            </p>
+
+
+                            <p>
+                                Listing date:&nbsp;&nbsp;<%= listing.date.toLocaleString("en-US", { month: "short" ,
+                                    day: "numeric" , year: "numeric" , }) %>
+                            </p>
+
+                        </div>
+
+                        <a class="text-deco" href="/<%= listing.id %>/editPage">
+                            <div class="edit-btn">
+                                Edit
+                            </div>
+                        </a>
+
+                    </div>
+                    <% } %>
+                        <% } %>
+        </div>
+    </div>

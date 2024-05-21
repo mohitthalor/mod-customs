@@ -1,0 +1,75 @@
+<% layout("/layouts/boilerplate") %>
+
+    <div class="createPage-container">
+        <div style="color: rgb(91, 91, 91); font-family: sans-serif; " class="createPage-header">
+            <h1 style="margin-left: 40px;">Edit your Listing</h1>
+        </div>
+        <div class="createPage-form-box">
+            <form action="/<%= listing.id %>/updateListing?_method=PUt" method="post" enctype="multipart/form-data">
+                <div class="input-group mb-4">
+
+                    <span class="input-group-text"> Vehicle Company and model name</span>
+                    <input type="text" name="listing[company]" aria-label="First name" class="form-control"
+                        value="<%= listing.company %>">
+                    <input type="text" name="listing[model]" aria-label="Last name" class="form-control"
+                        value="<%= listing.model %>">
+                </div>
+
+                <div class="mb-4">
+                    <label for="exampleFormControlInput1" class="form-label">Vehicle Part Type</label>
+                    <select name="listing[type]" class="form-select" aria-label="Default select example">
+                        <option selected>Select Part Name</option>
+                        <option value="Alloy wheels">Alloy wheels</option>
+                        <option value="Headlights">Headlights</option>
+                        <option value="Mat">Mat</option>
+                        <option value="Steering wheel">Steering wheel</option>
+                        <option value="Window tinting">Window tinting</option>
+                        <option value="Seat covers">Seat Covers</option>
+                        <option value="Body kits">Body kits</option>
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label for="exampleFormControlInput1" class="form-label">Part Title Name</label>
+                    <input name="listing[title]" type="text" class="form-control" id="exampleFormControlInput1"
+                        placeholder="part name" value="<%= listing.title %>">
+                </div>
+
+
+                <div class="mb-4">
+                    <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                    <input name="listing[description]" type="text" class="form-control" id="exampleFormControlInput1"
+                        placeholder="enter description for your product" value="<%= listing.description %>">
+
+                </div>
+
+                <div class=" mb-4">
+                    <label for="image" class="form-label">Upload image</label>
+                    <input type="file" name="listing[image]" class="form-control">
+                </div>
+
+                <div class="mb-4">
+                    <label for="exampleFormControlInput1" class="form-label">Price</label>
+                    <input name="listing[price]" type="number" class="form-control" id="exampleFormControlInput1"
+                        placeholder="Enter an effective price " value="<%= listing.price %>">
+                </div>
+
+                <div class="mb-4">
+                    <label for="exampleFormControlInput1" class="form-label">Garage location</label>
+                    <input name="listing[location]" type="text" class="form-control" id="exampleFormControlInput1"
+                        placeholder="Enter your Garage location (city,state,country )" value="<%= listing.location %>">
+                </div>
+
+                <button class="btn btn-primary" type="submit">Submit</button>
+
+                
+
+            </form>
+
+            <br>
+            <form action="/<%= listing._id %>/deleteListing?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-danger">Delete Listing</button>
+            </form>
+
+        </div>
+    </div>
