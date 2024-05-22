@@ -158,6 +158,7 @@
     width: 100%;
     height: 100%;
     padding: 40px;
+    float: left;
 }
 
 .footer-logo-box {
@@ -168,6 +169,8 @@
     background-color: rgb(255, 255, 255);
     border-radius: 20px;
     padding: 0px;
+   
+    
 }
 
 
@@ -196,7 +199,7 @@
 }
 
 .footer-enquiry-box {
-    width: 550px;
+    width: 450px;
     float: left;
     height: 200px;
     text-align: center;
@@ -232,7 +235,7 @@
     float: left;
     background-color: white;
     border-radius: 20px;
-    margin-right: 40px;
+    margin-right: 20px;
     font-size: 30px;
     padding: 10px;
     padding-left: 20px;
